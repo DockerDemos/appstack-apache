@@ -1,14 +1,14 @@
-# Docker container for an Apache webserver with mod_php 
+# Docker container for an Apache webserver with PHP-FPM
 # http://www.apache.org
 #
-# Due to a bug MUST USE el6 until patch upstream makes it into packages
+# Due to a bug we MUST USE el6 until patch upstream makes it into packages
 # unless the image will be built on a RHEL-based (CentOS, Scientific Linux) host
 #
 # See:
 # https://github.com/docker/docker/pull/5930
 #
 # If you have a RHEL-based server and want to use a CentOS 7 image, checkout
-# the 'apache-el7' branch
+# the 'el7-fpm' branch
 
 FROM centos:centos6
 MAINTAINER Chris Collins <collins.christopher@gmail.com>
