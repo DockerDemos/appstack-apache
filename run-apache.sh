@@ -1,37 +1,20 @@
 #!/bin/sh
 
-f_help() {
-  echo -e " 
-  Acceptable arguments are: 
-    --help  - Print this message
-    --shell - Start bash instead of httpd after run \n"
-  exit 1
-}
+SSLKEY='/conf/localhost.key'
+SSLCERT='/conf/localhost.crt'
 
-if [[ $1 == "--shell" ]] ; then
-  RUNSHELL='true'
-elif [[ $1 == "--help" ]] ; then
-  f_help
-elif [[ ! -z $1 ]] ; then
-  echo -e "
-  Unknown argument."
-  f_help
-fi
-
-# Check key/cert
-# How do I validate that they're legit, too?
-if [[ -z $SSLKEY ]] ; then
+if [[ ! -f $SSLKEY ]] ; then
   echo "NO SSL KEY"
   exit 1
 fi
 
-if [[ -z $SSLCERT ]] ; then
+if [[ ! -f $SSLCERT ]] ; then
   echo "NO SSL CERTIFICATE"
   exit 1
 fi
 
-echo -e "$SSLKEY" > /etc/pki/tls/private/localhost.key
-echo -e "$SSLCERT" > /etc/pki/tls/certs/localhost.crt
+cat $SSLKEY > /etc/pki/tls/private/localhost.key
+cat $SSLCERT > /etc/pki/tls/certs/localhost.crt
 
 CONFFILE="/etc/httpd/conf/httpd.conf"
 SSLFILE="/etc/httpd/conf.d/ssl.conf"
@@ -64,8 +47,4 @@ fi
 mkdir -p /var/log/httpd
 chown -R apache.root /var/log/httpd
 
-if [[ $RUNSHELL == 'true' ]] ; then
-  exec /bin/bash
-else
-  exec /usr/sbin/httpd -DFOREGROUND
-fi
+exec /usr/sbin/httpd.worker -DFOREGROUND
