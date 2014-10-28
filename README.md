@@ -13,21 +13,21 @@ _Branches_
 
 The master branch is designed to be run with the appstack-phpfpm and appstack-data containers.
 
-1. First run the data container, and map a directories on your host to /conf and /var/www/html:
+First run the data container, and map a directories on your host to /conf and /var/www/html:
 
     sudo docker run -d --name data -v /srv/conf:/conf -v /srv/html:/var/www/html data
 
-2. Place your SSL certificate and Key into /srv/conf.  (Non-SSL support will be added in a future update.)
+Place your SSL certificate and Key into /srv/conf.  (Non-SSL support will be added in a future update.)
 
-3. Run the php-fpm container:
+Run the php-fpm container:
 
     sudo docker run --name fpm --volumes-from data -d php-fpm
 
-4. Run the Apache container, with volumes from the data container, ports 80 and 443 exposed to your host, and linked to the php-fpm container.
+Run the Apache container, with volumes from the data container, ports 80 and 443 exposed to your host, and linked to the php-fpm container.
 
     sudo docker run -p 80:80 -p 443:443 --name web --link fpm:fpm --volumes-from data -d apache
 
-5. Finally, place whatever content you want served into /srv/html, and you're done.
+Finally, place whatever content you want served into /srv/html, and you're done.
 
 ##Customization##
 
