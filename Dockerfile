@@ -17,13 +17,10 @@ ENV FASTCGI https://github.com/clcollins/mod_fastcgi-rpm.git
 
 RUN yum install -y rpm-build rpmdevtools redhat-rpm-config gcc glibc-static autoconf automake httpd-devel apr-devel git which tar httpd mod_ssl
 
-WORKDIR /root
-RUN git clone $FASTCGI 
-RUN ./mod_fastcgi-rpm/build.sh mod_fastcgi 
-RUN yum install -y ./rpmbuild/RPMS/*/*.rpm
-# need to keep gcc autoconf automake until mod_fastcgi RPM is fixed
+ADD build-rpm.sh /build-rpm.sh
+RUN /build-rpm.sh
+
 RUN yum remove -y rpm-build rpmdevtools redhat-rpm-config glibc-static httpd-devel apr-devel git which tar
-WORKDIR /
 RUN mkdir /var/www/fastcgi-bin
 RUN echo -e '\
   DirectoryIndex index.php index.html\n\
