@@ -33,6 +33,7 @@ SSLOptions +StrictRequire\n\
 # Use only the modules we need
 RUN sed -i '/^LoadModule/d' $HTTPDCONF
 RUN sed -i '/# LoadModule foo_module modules\/mod_foo.so/c\
+LoadModule headers_module modules\/mod_headers.so\n\\
 LoadModule include_module modules\/mod_include.so\n\\
 LoadModule authz_host_module modules\/mod_authz_host.so\n\\
 LoadModule log_config_module modules\/mod_log_config.so\n\\
