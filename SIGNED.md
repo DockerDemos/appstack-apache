@@ -3,9 +3,9 @@
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1
 
-iEYEABECAAYFAlTHvMUACgkQte6EFif3vzdVnwCeI+uDIvWLrESdQyUcUm8fy7US
-HI4An2icQKmEX1a05Ts9eks+Gsbl/F+t
-=bjCy
+iEYEABECAAYFAlTKl6YACgkQte6EFif3vzezNwCg++Q4zf4zCrRMEmrbb2ynlraK
+ZBcAn1czhEc/8rIhY6J6CjwENHr7Ep2Y
+=CimH
 -----END PGP SIGNATURE-----
 
 ```
@@ -24,7 +24,7 @@ size   exec  file             contents
 35121          LICENSE        e1c0ad728983d8a57335e52cf1064f1affd1d454173d8cebd3ed8b4a72b48704
 2126           README.md      09c8816f6ef18959f2418e8af4800110e05b862cc33ac8bb5ea948d989bd636e
 611    x       build-rpm.sh   837481bdf0a77f9a3dc4a98055d4ab45a5de106632e0e2eeedb05ba3d8c10e57
-1674   x       pre-config.sh  7d1cd63d601cc1e81186c2ef02cead8ab6655d6bd2e97552c26cee0589f5cced
+3334   x       pre-config.sh  a17a64a368d617506faf9963eb248f2ded0b4e039fdf26c1c829433140508149
 606            vhost.conf     4a0b43a6ee8025dedf76ea05f30ce850f9b1a7bb8c77fead4b68ac9f279a0b49
 ```
 
